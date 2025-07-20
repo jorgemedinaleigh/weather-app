@@ -32,9 +32,21 @@ export const WeatherApp = () => {
       <div className='container'>
         <h1>Weather</h1>
         <form onSubmit={onSubmit}>
-          <input type="text" value={city} onChange={handleSearch}/>
+          <input type="text" className="mr-2" value={city} onChange={handleSearch}/>
           <button type="submit">Search</button>
         </form>
+        {
+          weather && (
+            <div className='card'>
+              <div className='card-body bg-secondary'>
+                <img src={'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'}/>
+                <h2>{weather.name}, {weather.sys.country}</h2>
+                <p>Temp: {weather.main.temp}°C</p>
+                <p>Conditions: {weather.weather[0].description}</p>
+              </div>
+            </div>
+          )
+        }
       </div>
     </>
   )
